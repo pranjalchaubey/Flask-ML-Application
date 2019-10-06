@@ -19,5 +19,9 @@ flask run
 
 ### usage
 * initially user need to signup for the app or login if already signedup
-![login signup image](/images/scrn1.png)
-Format: ![Alt Text]()
+![login image](/images/scrn1.png)
+![signup image](/images/scrn2.png)
+* then user select the 10 stocks.
+![select image](/images/scrn3.png)
+* then based on useres selection the predictions are made
+![predict image](/images/scrn4.png)
