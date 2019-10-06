@@ -8,6 +8,12 @@ A deployable Flask based ML application
 
 ### installing the required libraries
 ```bash
- pip install -r requirements.txt
+pip install -r requirements.txt
+```
+
+### Running Flask App
+```bash
+export FLASK_APP=app.py
+flask run
 ```
 
