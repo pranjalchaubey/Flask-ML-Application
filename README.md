@@ -5,6 +5,10 @@ A deployable Flask based ML application
 > * create a [vertual environment](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/) in python.
 > * or if you have conda base it's ok to work directly.
 > * activate the virtual environment.
+> * _clone the project_
+> ```bash
+  git clone 
+   ```
 
 ### installing the required libraries
 ```bash
