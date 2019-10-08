@@ -97,7 +97,7 @@ def classify_return(ret):
 
     return ret_category
 
-def data_preprocess(dataset):
+def data_preprocess(dataset, ticker_list):
     """
     Calculates log returns and creates the 'target' column.
     Returns the processed dataset as well as the data for the current 
@@ -108,6 +108,8 @@ def data_preprocess(dataset):
     dataset : Pandas Dataframe
         Dataframe containing price, volume and other 
         information of the chosen stocks. 
+    ticker_list : List
+        List of stock tickers that user has selected 
 
     Returns
     -------
@@ -274,8 +276,26 @@ def make_prediction(pred_data, features, rfc_classifier):
     """
     # Make the prediction 
     prediction = rfc_classifier.predict(pred_data[features])
+    if _GLOBAL_DEBUG_:
+        print(type(prediction))
+        print(prediction)
+
+    # Human Understandable Predictions 
+    pred_text = []
+    for pred in prediction:
+        if pred == 1:
+            pred_text.append('BUY')
+        elif pred == -1:
+            pred_text.append('SELL')
+        else: 
+            pred_text.append('HOLD')
+    if _GLOBAL_DEBUG_:
+        print(type(pred_text))
+        print(pred_text)
+
     # Create the 'Prediction List' 
-    pred_list = [(stock, pred) for stock, pred in zip(pred_data.index.levels[1].values.tolist(), prediction)]
+    pred_list = [(stock, pred) for stock, pred in\
+                 zip(pred_data.index.levels[1].values.tolist(), pred_text)]
 
     return pred_list
 
@@ -299,7 +319,7 @@ def main_function(ticker_list):
     # Preprocess the data
     # pred_data the date for which we will be making the 
     # prediction for
-    dataset, pred_data = data_preprocess(dataset)
+    dataset, pred_data = data_preprocess(dataset, ticker_list)
     # In our dataset all the columns except for the 'target' column are features
     # Temporarily drop the 'target' and extract the features  
     features = dataset.drop(['target'], axis=1).columns.values.tolist()
