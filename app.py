@@ -30,9 +30,9 @@ info = None
 #initialising the flask app
 app = Flask(__name__)
 
-list_of_items = {}
+dict_of_items = {}
 #defining the companies for stock
-_companys = {
+_companies = {
     "FB": "FACEBOOK",
     "AAPL": "APPLE",
     "AMZN": "AMAZON",
@@ -40,9 +40,9 @@ _companys = {
     "GOOGL": "GOOGLE",
     "SBUX": "STARBUCKS",
     "XOM": "EXXON MOBILE",
-    "JNJ": "JHONSON & JHONSON",
+    "JNJ": "JOHNSON & JOHNSON",
     "BAC": "BANK OF AMERICA",
-    "GM": "GENARAL MOTORS"
+    "GM": "GENERAL MOTORS"
     }
 #route web page to log in
 @app.route("/")
@@ -122,16 +122,16 @@ def logout():
 #route for selector
 @app.route("/selector")
 def selector():
-    global _companys
+    global _companies
     curr_user = auth.current_user
     if curr_user == None:
         return redirect(url_for('index', msg='login to continue'))
-    return render_template('selector.html', itms=_companys)
+    return render_template('selector.html', itms=_companies)
 
 #route for processing the selected list
 @app.route("/submit_items", methods = ['GET','POST'])
 def submit_items():
-    global list_of_items
+    global dict_of_items
     #check for user login
     curr_user = auth.current_user
     if curr_user == None:
@@ -139,20 +139,21 @@ def submit_items():
     if request.method == 'POST':
         #get the dictionary of data
         data = request.form.to_dict()
-        list_of_items = data
+        dict_of_items = data
         return jsonify({"result":"success", "url": url_for('predictor')})
 
 #displaying the predicted
 @app.route("/predictor")
 def predictor():
-    global list_of_items
+    global dict_of_items
     #check for user login
     curr_user = auth.current_user
     if curr_user == None:
         return redirect(url_for('index', msg='login to continue'))
+    
     x = {}
-    for i in list_of_items.keys():
-        x[list_of_items[i]] = _companys[list_of_items[i]]
+    for i in dict_of_items.keys():
+        x[dict_of_items[i]] = _companies[dict_of_items[i]]
     #get prediction from backend for next day stocks
     f_pred = sd.main_function(ticker_list=list(x.keys()))
 
