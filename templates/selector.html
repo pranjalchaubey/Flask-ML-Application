@@ -65,7 +65,7 @@
 	<div class="container-fluid padding mt-2" align="center">
 				<h3 class="display-5">Select 5 stock from below dropdown</h3>
 		<span id="err_msg" style="color:#EC7063"></span></br>
-			<select id="selector1" class="selectpicker col-lg-4 col-md-6 col-sm-12 col-xs-12" data-style="btn-info" multiple data-max-options="10">
+			<select id="selector1" class="selectpicker col-lg-4 col-md-6 col-sm-12 col-xs-12" data-style="btn-info" multiple data-max-options="5">
 				{% for i in itms.keys() %}
 					<option value="{{ i }}">{{ itms[i] }}</option>
 				{% endfor %}
