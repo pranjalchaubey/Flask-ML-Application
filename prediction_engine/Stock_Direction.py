@@ -332,11 +332,14 @@ def main_function(ticker_list):
     return final_prediction
 
 
-# List of stock tickers 
-# this info will come from the user, perhaps in the form of a pickle file 
-ticker_list = ['FB', 'AAPL', 'AMZN', 'NFLX', 'GOOGL', 'SBUX', 'XOM', 'JNJ', 'BAC', 'GM']
-# Call the Main Function to get the predictions     
-f_pred = main_function(ticker_list=ticker_list)
-# Print the output 
-# In the app, this is the output the user will see 
-print(f_pred)    
+# Need to add name==main to stop these lines from running everytime 
+# the flask server boots up. 
+if __name__ == "__main__":
+    # List of stock tickers 
+    # this info will come from the user, perhaps in the form of a pickle file 
+    ticker_list = ['FB', 'AAPL', 'AMZN', 'NFLX', 'GOOGL', 'SBUX', 'XOM', 'JNJ', 'BAC', 'GM']
+    # Call the Main Function to get the predictions     
+    f_pred = main_function(ticker_list=ticker_list)
+    # Print the output 
+    # In the app, this is the output the user will see 
+    print(f_pred)    
