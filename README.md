@@ -36,3 +36,11 @@ flask run
 ![select image](/images/s3.png)
 * then based on the user's selection, the _Fire Trade AI_ makes the predictions
 ![predict image](/images/s5.png)
+
+## Contributors
+
+* [Pranjal Chaubey](https://github.com/pranjalchaubey)
+* [Vinod](https://github.com/raita0100)
+* [Koushik](https://github.com/koushikkolli)
+* [Jorge](https://github.com/anglesjo)
+* [Abhishek](https://github.com/yossi94)
