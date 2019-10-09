@@ -3,6 +3,8 @@ _GLOBAL_DEBUG_ = False
 
 # yFinance will help us fetch the data for our dataset
 import yfinance as yf
+# Technical Analysis
+from .ta_functions import *
 # Data Mining and plotting 
 import numpy as np
 import pandas as pd
@@ -138,6 +140,20 @@ def data_preprocess(dataset, ticker_list):
         #print(dataset.head(30))
         print('Return Tail')
         print(dataset.tail(30))
+    ### START: Technical Analysis indicators added by Jorge
+    # Calculate momentum indicator, RSI score (based on a 10-day period, instead of the usual 14-day one)
+    rsi_score(dataset, 10)
+    
+    # Calculate trend indicator, 'MA_score', using a 20 and 50-day moving average crossover
+    ma_score(dataset, 20, 50)
+    
+    # Calculate volatility indicator, Bollinger Bands score
+    bollinger_score(dataset, 20, 2)
+    
+    # Clean up dataframe, keep only resulting scores
+    dataset = dataset.drop(['EMA_20', 'EMA_50', 'RSI', 'BB_hi', 'BB_lo'], axis=1)
+    
+    ### -----END------ ###
 
     # Drop the first row as it contains NANs in the returns column
     dataset.drop(index = dataset.index.levels[0].values[0], level=0, inplace=True)
@@ -147,7 +163,11 @@ def data_preprocess(dataset, ticker_list):
     # Create the 'target' column for the classifier 
     # Shift the 'target' into the future/delay by 1 day 'shift(-1)'
     # We do this since we are predicting returns of the 'next day close'
-    dataset['target'] = dataset['returns'].apply(lambda x: classify_return(x))
+    dataset['ret_score'] = dataset['returns'].apply(lambda x: classify_return(x))
+
+    # Added by Jorge
+    classify_scores(dataset)
+
     dataset['target'] = dataset.groupby(level=1)['target'].shift(-1)
     if _GLOBAL_DEBUG_ and _LOCAL_DEBUG_:
         #print('Target Head')
