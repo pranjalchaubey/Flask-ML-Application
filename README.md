@@ -42,5 +42,5 @@ flask run
 * [Pranjal Chaubey](https://github.com/pranjalchaubey)
 * [Vinod](https://github.com/raita0100)
 * [Koushik](https://github.com/koushikkolli)
-* [Jorge](https://github.com/anglesjo)
+* [Jorge Angles](https://github.com/anglesjo)
 * [Abhishek](https://github.com/yossi94)
