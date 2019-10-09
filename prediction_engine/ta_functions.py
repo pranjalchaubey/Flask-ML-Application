@@ -37,15 +37,13 @@ def rsi_score(df, period):
     Adjustments
     -----------
 
-    Temporarily assigned different period and thresholds to trigger more signals. 
+    Temporarily assigned different period to trigger more signals. 
     period = 10
-    lo_thrsh = 45.0
-    hi_thrsh = 55.0    
 
     """
     
-    lo_thrsh = 45.0
-    hi_thrsh = 55.0
+    lo_thrsh = 30.0
+    hi_thrsh = 70.0
     
     df['RSI_score'] = 0
     
@@ -80,11 +78,11 @@ def bollinger_score(df, period, ndev):
 
 def classify_scores(df):
     
-    df['target'] = df[['RSI_score', 'MA_score', 'BB_score', 'ret_score']].sum(axis=1)
+    df['Scores'] = df[['RSI_score', 'MA_score', 'BB_score']].sum(axis=1)
 
     # Logic part for results > 1 or < -1
-    a = np.array(df['target'].values.tolist())
-    df['target'] = np.where(a > 1, 1, a).tolist()
-    df['target'] = np.where(a < -1, -1, a).tolist()
+    a = np.array(df['Scores'].values.tolist())
+    df['Scores'] = np.where(a > 1, 1, a).tolist()
+    df['Scores'] = np.where(a < -1, -1, a).tolist()
     
     return df

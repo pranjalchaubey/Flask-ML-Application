@@ -140,7 +140,8 @@ def data_preprocess(dataset, ticker_list):
         #print(dataset.head(30))
         print('Return Tail')
         print(dataset.tail(30))
-    ### START: Technical Analysis indicators added by Jorge
+    
+    ### Some Technical Analysis Indicators
     # Calculate momentum indicator, RSI score (based on a 10-day period, instead of the usual 14-day one)
     rsi_score(dataset, 10)
     
@@ -149,11 +150,7 @@ def data_preprocess(dataset, ticker_list):
     
     # Calculate volatility indicator, Bollinger Bands score
     bollinger_score(dataset, 20, 2)
-    
-    # Clean up dataframe, keep only resulting scores
-    dataset = dataset.drop(['EMA_20', 'EMA_50', 'RSI', 'BB_hi', 'BB_lo'], axis=1)
-    
-    ### -----END------ ###
+
 
     # Drop the first row as it contains NANs in the returns column
     dataset.drop(index = dataset.index.levels[0].values[0], level=0, inplace=True)
@@ -163,11 +160,7 @@ def data_preprocess(dataset, ticker_list):
     # Create the 'target' column for the classifier 
     # Shift the 'target' into the future/delay by 1 day 'shift(-1)'
     # We do this since we are predicting returns of the 'next day close'
-    dataset['ret_score'] = dataset['returns'].apply(lambda x: classify_return(x))
-
-    # Added by Jorge
-    classify_scores(dataset)
-
+    dataset['target'] = dataset['returns'].apply(lambda x: classify_return(x))
     dataset['target'] = dataset.groupby(level=1)['target'].shift(-1)
     if _GLOBAL_DEBUG_ and _LOCAL_DEBUG_:
         #print('Target Head')
