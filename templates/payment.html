@@ -25,7 +25,6 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 		<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-		<script src="{{ url_for('static', filename='scripts/select_data.js') }}"></script>
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
 		<!-- Navigation -->
@@ -61,25 +60,30 @@
 		</nav>
 
 <!-- Navigation end-->
-<!--Display the selector button-->
-	<div class="container-fluid padding mt-2" align="center">
-				<h3 class="display-5">Select 5 stock from below dropdown</h3>
-		<span id="err_msg" style="color:#EC7063">
+<!--Payment mode-->
+  <div class="container-fluid padding mt-6" align="center">
+    <span id="err_msg" style="color:#EC7063">
 			{% if msg %}
 				{{ msg }}
-			{% endif%}
-		</span></br>
-			<select id="selector1" class="selectpicker col-lg-4 col-md-6 col-sm-12 col-xs-12" data-style="btn-info" multiple data-max-options="5">
-				{% for i in itms.keys() %}
-					<option value="{{ i }}">{{ itms[i] }}</option>
-				{% endfor %}
-			</select>
-		<div class="row-padding mt-5">
-			<button type="button" name="button_submit" class="btn btn-primary" onclick="select_items()">Submit</button>
-		</div>
-		<div class="row padding mt-5" id="load_btn" style="display: none;">
-			<h4>Fire Trade AI Waking Up..........</h4>
-		</div>
-	</div>
+			{% endif %}
+		</span>
+    <h4>Pay $250.00 by clicking on the button below.</h4>
+		<p>
+			for payment use
+			card no : 4242 4242 4242 4242
+			expr date: 01/23
+			cvv : 123
+		</p>
+    <form action="{{ url_for('pay') }}" method="POST">
+        <script src="https://checkout.stripe.com/checkout.js"
+                class="stripe-button"
+                data-key="pk_test_9qnorLWUQILDlpMbGFjx1jM300ESwEvbGe"
+                data-description="A payment for Fire Trade project"
+                data-name="FireTrade.com"
+                data-image=""
+                data-amount="25000">
+        </script>
+    </form>
+  </div>
 </body>
 </html>
