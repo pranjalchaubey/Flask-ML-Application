@@ -6,9 +6,15 @@ const kSendButtonTextStyle = TextStyle(
   fontSize: 18.0,
 );
 
-const kMessageTextFieldDecoration = InputDecoration(
+const kStockTextFieldDecoration = InputDecoration(
   contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
   hintText: 'Select your preferred stocks...',
+  border: InputBorder.none,
+);
+
+const kPaymentTextFieldDecoration = InputDecoration(
+  contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+  hintText: 'Please, subscribe to our service via Stripe',
   border: InputBorder.none,
 );
 

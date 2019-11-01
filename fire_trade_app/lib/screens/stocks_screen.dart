@@ -39,7 +39,7 @@ class _StockScreenState extends State<StockScreen> {
                       onChanged: (value) {
                         //Do something with the user input.
                       },
-                      decoration: kMessageTextFieldDecoration,
+                      decoration: kStockTextFieldDecoration,
                     ),
                   ),
                   FlatButton(
