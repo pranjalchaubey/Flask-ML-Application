@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fire_trade_app/screens/payment_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
@@ -14,6 +15,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   String name;
   String email;
   String password;
+  FirebaseUser currentUser;
+
+  @override
+  initState() {
+    this.getCurrentUser();
+    super.initState();
+  }
+
+  void getCurrentUser() async {
+    currentUser = await FirebaseAuth.instance.currentUser();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +52,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               decoration: InputDecoration(
                 hintText: 'Enter your name',
                 contentPadding:
-                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
@@ -92,7 +104,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               decoration: InputDecoration(
                 hintText: 'Enter your password',
                 contentPadding:
-                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
@@ -119,6 +131,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   onPressed: () async {
                     try {
                       final newUser = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+                      Firestore.instance.collection("users").document(currentUser.uid)
+                          .setData({
+                          "uid": currentUser.uid,
+                          "name": name,
+                          "email": email,
+                          });
+
                       if (newUser != null) {
                         Navigator.pushNamed(context, PaymentScreen.id);
                       }
