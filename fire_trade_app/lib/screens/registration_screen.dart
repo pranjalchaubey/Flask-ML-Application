@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fire_trade_app/screens/payment_screen.dart';
+import 'package:fire_trade_app/screens/subscribe_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
   static const String id = 'registration_screen';
@@ -139,7 +139,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           });
 
                       if (newUser != null) {
-                        Navigator.pushNamed(context, PaymentScreen.id);
+                        Navigator.pushNamed(context, SubscribeScreen.id);
                       }
                     }
                     catch (e) {
