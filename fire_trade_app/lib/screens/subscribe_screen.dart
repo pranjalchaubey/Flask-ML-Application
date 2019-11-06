@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fire_trade_app/screens/stocks_screen.dart';
 
 class SubscribeScreen extends StatefulWidget {
@@ -9,6 +11,60 @@ class SubscribeScreen extends StatefulWidget {
 }
 
 class _SubscribeScreenState extends State<SubscribeScreen> {
+  Razorpay _razorpay;
+
+  @override
+  initState() {
+    super.initState();
+
+    _razorpay = Razorpay();
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _razorpay.clear();
+  }
+
+  void openCheckout() async {
+    var options = {
+      'key': 'rzp_test_30uxz858pDwygw',
+      'amount': 700,
+      "method": "card",
+      'name': 'Fire Trade',
+      'description': 'Monthly subscription to Fire Trade',
+      'prefill': {'contact': '', 'email': ''},
+      //'external': {
+        //'wallets': ['paytm']
+      //}
+    };
+
+    try {
+      _razorpay.open(options);
+    } catch (e) {
+      debugPrint(e);
+    }
+  }
+
+  void _handlePaymentSuccess(PaymentSuccessResponse response) {
+    Fluttertoast.showToast(
+        msg: "SUCCESS: " + response.paymentId, timeInSecForIos: 4);
+  }
+
+  void _handlePaymentError(PaymentFailureResponse response) {
+    Fluttertoast.showToast(
+        msg: "ERROR: " + response.code.toString() + " - " + response.message,
+        timeInSecForIos: 4);
+  }
+
+  void _handleExternalWallet(ExternalWalletResponse response) {
+    Fluttertoast.showToast(
+        msg: "EXTERNAL_WALLET: " + response.walletName, timeInSecForIos: 4);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,8 +160,10 @@ class _SubscribeScreenState extends State<SubscribeScreen> {
                   borderRadius: BorderRadius.circular(10.0),
                   child: MaterialButton(
                     onPressed: () {
+                      openCheckout();
                       Navigator.pushNamed(context, StockScreen.id);
-                    },
+                      },
+                    //child: Text('Open'),
                     minWidth: 200.0,
                     height: 42.0,
                     child: Text(
