@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Fire Trade</title>
+		<link rel="icon" type="image/png" href="{{ url_for('static', filename='Images/logo.png') }}">
 
 		<!-- bootstrap links -->
 
@@ -17,7 +18,7 @@
 
 	</head>
 
-	<body>
+	<body style="background-color: #19191E">
     <!-- scripts-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -26,9 +27,9 @@
 		<script src="{{ url_for('static', filename='scripts/select_data.js') }}"></script>
 		<!-- Navigation -->
 
-		<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top ">
+		<nav class="navbar navbar-expand-md navbar-light bg-dark sticky-top ">
 		<div class="container-fluid" align="center">
-		<a class="navbr-brand" href={{ url_for('.index') }}><img src="{{ url_for('static', filename='Images/trade_3.png') }}"></a>
+		<a class="navbr-brand" href={{ url_for('.index') }}><img src="{{ url_for('static', filename='Images/logo-min.png') }}"></a>
 			<!--<div align="center" class="disp_title">
 				Fire Trade
 			</div>-->
@@ -65,22 +66,35 @@
 
 <!-- Navigation end-->
 	<div class="container-fluid padding mt-2" align="center">
-    <div class="row padding">
+    <div class="row">
     <div class="col-12">
 
-      <h3 class="display-5">Fire Trade AI Recommendations for Tomorrow's Close</h3>
+      <h3 class="display-5"><font color="#A569BD">Fire Trade AI Recommendations for Tomorrow's Close</font></h3>
         <hr>
-		<h5 class="boxed">
-      {% if msg %}
-        {{ msg }}
-      {% endif %}
-		</h5>
       </br>
     </div>
     </div>
+		<div class="row" style="margin-top: -3rem;">
+			<div class="col-sm-12 col-md-4">
+
+			</div>
+			<div class="col-sm-12 col-md-4">
+				<h5 class="">
+					<font color="#ffffff" face="Comic Sans MS">
+	      	{% if msg %}
+	        	{{ msg }}
+	      	{% endif %}
+				</font>
+				</h5>
+				<hr>
+			</div>
+			<div class="col-sm-12 col-md-4">
+
+			</div>
+		</div>
     <!--Display the table data-->
       <div class="row padding mt-3 ml-4 mr-4">
-          <table class="table table-hover table-striped">
+          <table class="table table-hover table-striped" style="background: #EAEDED;">
             <thead>
               <tbody>
                 {% if s_list %}

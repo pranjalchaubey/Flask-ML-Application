@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Fire Trade</title>
+		<link rel="icon" type="image/png" href="{{ url_for('static', filename='Images/logo.png') }}">
 
 		<!-- bootstrap links -->
 
@@ -19,7 +20,7 @@
 
 	</head>
 
-	<body>
+	<body style="background-color: #19191E">
     <!-- scripts-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -30,9 +31,9 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
 		<!-- Navigation -->
 
-		<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top ">
+		<nav class="navbar navbar-expand-md navbar-light bg-dark sticky-top ">
 		<div class="container-fluid" align="center">
-		<a class="navbr-brand" href={{ url_for('.index') }}><img src="{{ url_for('static', filename='Images/trade_3.png') }}"></a>
+		<a class="navbr-brand" href={{ url_for('.index') }}><img src="{{ url_for('static', filename='Images/logo-min.png') }}"></a>
 			<!--<div align="center" class="disp_title">
 				Fire Trade
 			</div>-->
@@ -63,7 +64,7 @@
 <!-- Navigation end-->
 <!--Display the selector button-->
 	<div class="container-fluid padding mt-2" align="center">
-				<h3 class="display-5">Select 5 stock from below dropdown</h3>
+				<h3 class="display-5"><font color="#B7D9A3">Select 5 stock from below dropdown</font></h3>
 		<span id="err_msg" style="color:#EC7063">
 			{% if msg %}
 				{{ msg }}
@@ -78,7 +79,7 @@
 			<button type="button" name="button_submit" class="btn btn-primary" onclick="select_items()">Submit</button>
 		</div>
 		<div class="row padding mt-5" id="load_btn" style="display: none;">
-			<h4>Fire Trade AI Waking Up..........</h4>
+			<h4><font color="#ffffff">Fire Trade AI Waking Up..........</h4>
 		</div>
 	</div>
 </body>

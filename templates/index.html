@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Fire Trade</title>
+		<link rel="icon" type="image/png" href="{{ url_for('static', filename='Images/logo.png') }}">
 
 		<!-- bootstrap links -->
 
@@ -18,7 +19,7 @@
 
 	</head>
 
-	<body>
+	<body style="background-color: #19191E">
     <!-- scripts-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -27,9 +28,9 @@
 		<script src="{{ url_for('static', filename='scripts/verify.js') }}"></script>
 		<!-- Navigation -->
 
-		<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top ">
+		<nav class="navbar navbar-expand-md navbar-light bg-dark sticky-top ">
 		<div class="container-fluid" align="center">
-		<a class="navbr-brand" href="#"><img src="{{ url_for('static', filename='Images/trade_3.png') }}"></a>
+		<a class="navbr-brand" href="#"><img src="{{ url_for('static', filename='Images/logo-min.png') }}"></a>
 			<!--<div align="center" class="disp_title">
 				Fire Trade
 			</div>-->
@@ -53,49 +54,84 @@
 <!-- Navigation end-->
 <!--Login form -->
 <div class="container-fluid padding" id="home">
-	<div class="row padding mt-4" style="background-color : rgba(208, 211, 212, 0.1);">
+
+	<div class="row padding mt-4" style="background-color : rgba(25, 25, 30, 0.1);">
+
 		<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-			<h1 style="color:#F3107E;">AI Amplified Trading!</h1>
-			<p style="font-style: oblique;font-size: 1em;font-family: Arial, Helvetica, sans-serif;color: #CA10F3;">
-				Enhance your trading decisions with our Fire Trade AI. Simple, Intuitive, Profitable! 
+			<img src="{{ url_for('static', filename='Images/logo.png') }}" style="height: 4rem;width: 100%; " alt="loading"></img>
+			<h1 style="color:#B7D9A3;margin-top: 2rem;">AI Amplified Trading!</h1>
+			<p style="font-style: oblique;font-size: 1em;font-family: Arial, Helvetica, sans-serif;color: #81C525;">
+				Enhance your trading decisions with our Fire Trade AI. Simple, Intuitive, Profitable!
 			</p>
 		</div>
-		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4" >
+
+		<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6" >
 			<span id="mseg" style="color:#6FD917">
 			{% if msg %}
 				{{ msg }}
 			{% endif %}
 			</span>
-			<div class="box_1">
+			<div class="box_3" align="center">
 				<div class="panel panel-primarry">
-					<div class="panel-heading"><font color="#7F6496" size="5px"><strong>Please, sign in</strong></font></div>
+					<div class="panel-heading">
+						<font color="#65B700" size="5px" face="Courier New">
+							<strong>FIRE TRADE, sign in</strong>
+						</font>
+					</div>
 				</div>
 
 
-						<div class="input-group">
+						<!--<div class="input-group">
 							<span class="input-group-text"><i class="fa fa-user"></i></span>
-							<input id="email" type="email" class="form-control left-border-none" name="email" placeholder="Email"></input>
+							<input id="email" type="email" class="form-control" name="email" placeholder="Email"></input>
+						</div>-->
+
+						<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+							<input class="input100" id="email" type="email" name="email" placeholder="Email">
+							<span class="focus-input100"></span>
+							<span class="symbol-input100">
+								<i class="fa fa-envelope" aria-hidden="true"></i>
+							</span>
 						</div>
+
 						<span id="err_mail" style="color:#EC7063"></span>
-						<div class="input-group mt-2">
+
+						<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<input class="input100" id="password" type="password" name="password" placeholder="Password">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+
+						<!--<div class="input-group mt-2">
 							<span class="input-group-text"><i class="fa fa-lock"></i></span>
 							<input id="password" type="password" class="form-control left-border-none" name="password" placeholder="password"></input>
-						</div>
+						</div>-->
+
 						<div id="err_pass" style="color:#EC7063">
               {% if us %}
                 {{ us }}
               {% endif %}
             </div>
 
-					<div class="ml-0.5 mt-1">
+						<div class="container-login100-form-btn">
+							<button class="login100-form-btn" id="login-btn" value="Login" onclick="email_verify()">
+								Signin
+							</button>
+						</div>
+
+					<!--<div class="ml-0.5 mt-1">
 						<button class="btn btn-secondary" id="login-btn" value="Login" onclick="email_verify()">Sign In</button>
-					</div>
+					</div>-->
 
 				<div class="mt-1">
-					or
+					<font color="#65B700"  face="Courier New">
+						<strong>or</strong>
+					</font>
 				</div>
 				<div class="ml-1 mr-1 mt-1">
-					<a class="btn btn-primary" href={{ url_for('.sign_in') }}>Sign Up</a>
+					<a class="" href={{ url_for('.sign_in') }}>Create an account/</a>
 				</div>
 			</div>
 		</div>

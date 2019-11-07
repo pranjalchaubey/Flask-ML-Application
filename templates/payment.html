@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Fire Trade</title>
+		<link rel="icon" type="image/png" href="{{ url_for('static', filename='Images/logo.png') }}">
 
 		<!-- bootstrap links -->
 
@@ -19,7 +20,7 @@
 
 	</head>
 
-	<body>
+	<body style="background-color: #19191E">
     <!-- scripts-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -29,9 +30,9 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
 		<!-- Navigation -->
 
-		<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top ">
+		<nav class="navbar navbar-expand-md navbar-light bg-dark sticky-top ">
 		<div class="container-fluid" align="center">
-		<a class="navbr-brand" href={{ url_for('.index') }}><img src="{{ url_for('static', filename='Images/trade_3.png') }}"></a>
+		<a class="navbr-brand" href={{ url_for('.index') }}><img src="{{ url_for('static', filename='Images/logo-min.png') }}"></a>
 			<!--<div align="center" class="disp_title">
 				Fire Trade
 			</div>-->
@@ -67,8 +68,8 @@
 				{{ msg }}
 			{% endif %}
 		</span>
-    <h4>Pay $250.00 by clicking on the button below.</h4>
-		<p>
+    <h4 style="color:#81C525;">Pay $250.00 by clicking on the button below.</h4>
+		<p style="color:#B7D9A3;">
 			for payment use
 			card no : 4242 4242 4242 4242
 			expr date: 01/23
