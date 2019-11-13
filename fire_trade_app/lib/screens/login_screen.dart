@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fire_trade_app/screens/stocks_screen.dart';
 
-
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
 
@@ -46,13 +45,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Color(0xFFB7D9A3), width: 1.0),
+                  borderSide: BorderSide(color: Color(0xFFB7D9A3), width: 1.0),
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Color(0xFFB7D9A3), width: 2.0),
+                  borderSide: BorderSide(color: Color(0xFFB7D9A3), width: 2.0),
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
               ),
@@ -74,13 +71,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Color(0xFFB7D9A3), width: 1.0),
+                  borderSide: BorderSide(color: Color(0xFFB7D9A3), width: 1.0),
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Color(0xFFB7D9A3), width: 2.0),
+                  borderSide: BorderSide(color: Color(0xFFB7D9A3), width: 2.0),
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
               ),
@@ -97,12 +92,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: MaterialButton(
                   onPressed: () async {
                     try {
-                      final user = await _auth.signInWithEmailAndPassword(email: email, password: password);
+                      final user = await _auth.signInWithEmailAndPassword(
+                          email: email, password: password);
                       if (user != null) {
-                        Navigator.pushNamed(context, StockScreen.id);
+                        //Navigator.pushNamed(context, StockScreen.id);
+                        //Navigator.pushReplacementNamed(context, StockScreen.id);
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, StockScreen.id, (_) => false);
                       }
-                    }
-                    catch (e) {
+                    } catch (e) {
                       print(e);
                     }
                   },
