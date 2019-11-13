@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:new_stocks_page/models/prediction.dart';
-import 'package:new_stocks_page/widgets/predicts_list.dart';
+import 'package:new_stocks_page/widgets/predict_tile.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 
@@ -14,14 +14,6 @@ class ResultsScreen extends StatefulWidget {
 }
 
 class _ResultsScreenState extends State<ResultsScreen> {
-//  Map<String, dynamic> results;
-//  List<Prediction> predictions = [
-//    Prediction(name: 'AAPL', predict: 'SELL'),
-//    Prediction(name: 'AMZN', predict: 'BUY'),
-//    Prediction(name: 'BAC', predict: 'SELL'),
-//    Prediction(name: 'FB', predict: 'SELL'),
-//    Prediction(name: 'GOOGL', predict: 'BUY'),
-//  ];
   List<Prediction> predictions = [];
   Future<List<Prediction>> _predictions() async {
     String url = "https://predict-stock-57p5.onrender.com/";
@@ -44,41 +36,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
   @override
   void initState() {
     super.initState();
-
-    print('Previous Json is: ${widget.previousJson}');
-    _predictions();
-
-    //makePostRequest(widget.previousJson);
-    //Future.delayed(const Duration(seconds: 10));
   }
-
-/*  makePostRequest(requestData) async {
-    String url = "https://predict-stock-57p5.onrender.com/";
-    Map<String, String> headers = {
-      'Content-Type': "application/json",
-    };
-    var jsonText = jsonEncode(requestData);
-    var response = post(url, headers: headers, body: jsonText);
-    //int statusCode = response.statusCode;
-    //String _body = response.body;
-    print(statusCode);
-    //print(_body); // get the body of the request and send to the app page
-    final dynamic data = json.decode(response.body);
-    print(data);
-    //print(data["AAPL"]);
-    //results = await data;
-
-    return results;
-  }*/
-
-/*  loadList(data) {
-    var key;
-    for (key in results.keys) {
-      print(results[key][1]);
-      predictions
-          .add(Prediction(name: results[key][0], predict: results[key][1]));
-    }
-  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -91,29 +49,24 @@ class _ResultsScreenState extends State<ResultsScreen> {
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (snapshot.data != null) {
                   return Container(
-                    alignment: Alignment.center,
                     height: MediaQuery.of(context).size.height,
-                    color: Color(0xfffF7F7F7),
-                    /*child: ListView.builder(
+                    color: Color(0xFF19191E),
+                    child: ListView.builder(
                       itemCount: snapshot.data.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return BookDetails(
-                          snapshot.data[index],
-                          snapshot.data[index].bookname,
-                          snapshot.data[index].bookauthor,
-                          snapshot.data[index].bookcover,
-                          snapshot.data[index].bookrating,
-                          snapshot.data[index].bookviews,
+                        return PredictTile(
+                          stockTitle: predictions[index].name,
+                          prediction: predictions[index].predict,
                         );
                       },
-                    ),*/
-                    child: Text('It works'),
+                    ),
+                    //child: Text('It works'),
                   );
                 } else {
                   return Container(
-                    child: Center(
-                      child: Text("Loading"),
-                    ),
+                    alignment: Alignment.center,
+                    height: MediaQuery.of(context).size.height,
+                    child: Text("Loading..."),
                   );
                 }
               },
