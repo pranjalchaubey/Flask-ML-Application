@@ -8,6 +8,25 @@ html, body {
 	color: #222;
 }
 
+#loader{
+	display: none;
+	position: absolute;
+	left: 0px;
+	top: 0;
+}
+
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 3;
+	opacity: 0.3;
+	background: url(../Images/Preloader_11.gif) center no-repeat #fff;
+}
+
+
 img {
 	height:70%;
 }
@@ -45,58 +64,168 @@ img {
 	padding: 10px;
 	background-color: rgba(209, 175, 245, 0.27);
 }
-.wall{
-	position: relative;
-	background:#D0D3D4;
-	padding-top:5%;
-	padding-bottom: 5%;
-	padding-left: 5%;
-	padding-right: 5%;
-
+.box_3{
+	text-align: center;
+	width: 70%;
+	padding: 10px;
+	margin-left: 6rem;
 }
 
-.room{
-	background:#E5E8E8;
-	position: relative;
-	background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-	margin-right:10px;
-	margin-top:10px;
+/*--------------------------Input style-----------------------*/
+input {
+	outline: none;
+	border: none;
 }
 
-.room:after{
-	content:"";
-	position: absolute;
-	display: block;
-	padding-bottom:100%;
+input:focus {
+  border-color: transparent !important;
 }
 
-.room_l{
-	background: url(ornaments/home_back_2.png);/*rgba(189, 91, 252, 0.7);*/
-	position: relative;
-	border: 10px solid white;
-	background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+input:focus::-webkit-input-placeholder { color:transparent; }
+input:focus:-moz-placeholder { color:transparent; }
+input:focus::-moz-placeholder { color:transparent; }
+input:focus:-ms-input-placeholder { color:transparent; }
+
+input::-webkit-input-placeholder { color: #999999; }
+input:-moz-placeholder { color: #999999; }
+input::-moz-placeholder { color: #999999; }
+input:-ms-input-placeholder { color: #999999; }
+
+/*------------------------------------------------------------*/
+
+/*---------------------------------------------*/
+.wrap-input100 {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  margin-bottom: 10px;
 }
 
-.room_l:after{
-	content:"";
-	position: absolute;
-	display: block;
-	padding-bottom:100%;
-}
-.room_r{
-	background: #F8F243;
-	position:relative;
+.input100 {
+  font-family: Poppins-Medium;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #666666;
+
+  display: block;
+  width: 100%;
+  background: #e6e6e6;
+  height: 50px;
+  border-radius: 25px;
+  padding: 0 30px 0 68px;
 }
 
-.room_r:after{
-	content:"";
-	display: block;
-	padding-bottom:100%;
+
+/*------------------------------------------------------------------
+[ Focus ]*/
+.focus-input100 {
+  display: block;
+  position: absolute;
+  border-radius: 25px;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0px 0px 0px 0px;
+  color: rgba(151, 212, 249, 0.8);
 }
+
+.input100:focus + .focus-input100 {
+  -webkit-animation: anim-shadow 0.5s ease-in-out forwards;
+  animation: anim-shadow 0.5s ease-in-out forwards;
+}
+
+@-webkit-keyframes anim-shadow {
+  to {
+    box-shadow: 0px 0px 70px 25px;
+    opacity: 0;
+  }
+}
+
+@keyframes anim-shadow {
+  to {
+    box-shadow: 0px 0px 70px 25px;
+    opacity: 0;
+  }
+}
+
+.symbol-input100 {
+  font-size: 15px;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  border-radius: 25px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-left: 35px;
+  pointer-events: none;
+  color: #666666;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.input100:focus + .focus-input100 + .symbol-input100 {
+  color: #57b846;
+  padding-left: 28px;
+}
+/*------------------------------------------------------------*/
+
+/*--------------BUTTON------------------------*/
+.container-login100-form-btn {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.login100-form-btn {
+  font-family: Montserrat-Bold;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #fff;
+  text-transform: uppercase;
+
+  width: 100%;
+  height: 50px;
+  border-radius: 25px;
+  background: #57b846;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 25px;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.login100-form-btn:hover {
+  background: #333333;
+}
+
+/*------------------------------------------------------------*/
+
 .content{
 	position: absolute;
 	width: 100%;
@@ -113,7 +242,7 @@ img {
 
 .navbar {
 	padding: .8rem;
-	background: #D5DBDB;
+	background-color: #19191E;
 }
 .bg-class {
 	color: #C39BD3;
@@ -272,6 +401,10 @@ hr.light-100{
 		font-size: 4em;
 		padding: 2rem;
 	}
+	.box_3{
+		width: 70%;
+		margin-left: 2rem;
+	}
   }
 @media (max-width: 768px) {
   .carousel-caption{
@@ -301,6 +434,11 @@ hr.light-100{
 	.social a{
 		font-size: 2.4em;
 		padding: 1.2rem;
+	}
+
+	.box_3{
+		width: 80%;
+		margin-left: 0rem;
 	}
 }
 @media (max-width: 576px) {
@@ -332,7 +470,54 @@ hr.light-100{
 		font-size: 2em;
 		padding: 0.7rem;
 	}
+	.box_3{
+		width: 100%;
+		margin-left: 0rem;
+	}
 }
+
+
+/*------------------------------------------------------------------
+[ Responsive ]*/
+
+
+
+@media (max-width: 992px) {
+  .wrap-login100 {
+    padding: 177px 90px 33px 85px;
+  }
+
+  .login100-pic {
+    width: 35%;
+  }
+
+  .login100-form {
+    width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .wrap-login100 {
+    padding: 100px 80px 33px 80px;
+  }
+
+  .login100-pic {
+    display: none;
+  }
+
+  .login100-form {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .wrap-login100 {
+    padding: 100px 15px 33px 15px;
+  }
+}
+
+
+/*------------------------------------------------------------------*/
 
 
 /*---Firefox Bug Fix --*/
