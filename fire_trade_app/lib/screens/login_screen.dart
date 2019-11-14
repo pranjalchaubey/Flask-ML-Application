@@ -98,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         //Navigator.pushNamed(context, StockScreen.id);
                         //Navigator.pushReplacementNamed(context, StockScreen.id);
                         Navigator.pushNamedAndRemoveUntil(
-                            context, StockScreen.id, (_) => false);
+                            context, StocksScreen.id, (_) => false);
                       }
                     } catch (e) {
                       print(e);

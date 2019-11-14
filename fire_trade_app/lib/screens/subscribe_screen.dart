@@ -165,7 +165,7 @@ class _SubscribeScreenState extends State<SubscribeScreen> {
                       openCheckout();
                       //Navigator.pushNamed(context, StockScreen.id);
                       Navigator.pushNamedAndRemoveUntil(
-                          context, StockScreen.id, (_) => false);
+                          context, StocksScreen.id, (_) => false);
                     },
                     //child: Text('Open'),
                     minWidth: 200.0,
