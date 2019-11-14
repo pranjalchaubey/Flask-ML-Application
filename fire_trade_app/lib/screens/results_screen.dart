@@ -1,4 +1,6 @@
+import 'package:fire_trade_app/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fire_trade_app/models/prediction.dart';
 import 'package:fire_trade_app/widgets/predict_tile.dart';
 import 'package:http/http.dart';
@@ -16,6 +18,7 @@ class ResultsScreen extends StatefulWidget {
 }
 
 class _ResultsScreenState extends State<ResultsScreen> {
+  final _auth = FirebaseAuth.instance;
   List<Prediction> predictions = [];
   Future<List<Prediction>> _predictions() async {
     String url = "https://predict-stock-57p5.onrender.com/";
@@ -35,6 +38,13 @@ class _ResultsScreenState extends State<ResultsScreen> {
     return predictions;
   }
 
+  _logOut() async {
+    await _auth.signOut().then((_) {
+      Navigator.of(context).pushNamedAndRemoveUntil(
+          WelcomeScreen.id, ModalRoute.withName(WelcomeScreen.id));
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -47,11 +57,25 @@ class _ResultsScreenState extends State<ResultsScreen> {
       appBar: AppBar(
         leading: null,
         actions: <Widget>[
-          IconButton(
+          /*IconButton(
               icon: Icon(Icons.close),
               onPressed: () {
+                _logOut();
                 //Implement logout functionality
-              }),
+              }),*/
+          FlatButton(
+            textColor: Colors.white,
+            onPressed: () {
+              _logOut();
+            },
+            child: Text(
+              "Log out",
+              style: TextStyle(
+                fontSize: 16.0,
+                color: Colors.grey[100],
+              ),
+            ),
+          ),
         ],
         title: Text('Predictions'),
         centerTitle: true,
@@ -60,11 +84,27 @@ class _ResultsScreenState extends State<ResultsScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
+            Container(
+              padding: EdgeInsets.only(top: 25.0),
+              child: Text(
+                'AI Recommendations for Tomorrow',
+                style: TextStyle(
+                  color: Color(0xFFB7D9A3),
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
+            Divider(
+              thickness: 1.0,
+              color: Color(0xFFB7D9A3),
+            ),
             FutureBuilder(
               future: _predictions(),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (snapshot.data != null) {
                   return Container(
+                    padding: EdgeInsets.all(15.0),
                     height: MediaQuery.of(context).size.height,
                     color: Color(0xFF19191E),
                     child: ListView.builder(
@@ -76,17 +116,29 @@ class _ResultsScreenState extends State<ResultsScreen> {
                         );
                       },
                     ),
-                    //child: Text('It works'),
                   );
                 } else {
                   return Container(
                     alignment: Alignment.center,
                     height: MediaQuery.of(context).size.height,
-                    child: Text(
-                      "Loading, please wait...",
-                      style: TextStyle(
-                        color: Colors.grey[400],
-                      ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        CircularProgressIndicator(
+                          backgroundColor: Color(0xFF19191E),
+                          valueColor: AlwaysStoppedAnimation(Color(0xFF81C525)),
+                        ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        Text(
+                          "Loading, please wait...",
+                          style: TextStyle(
+                            color: Colors.grey[400],
+                            fontSize: 16.0,
+                          ),
+                        ),
+                      ],
                     ),
                   );
                 }

@@ -25,35 +25,11 @@ class _StocksScreenState extends State<StocksScreen> {
   ];
 
   Map<String, String> _jsonRequest = {};
-  //Future<String> _body;
 
   @override
   void initState() {
     super.initState();
   }
-
-/*  makePostRequest(requestData) async {
-    String url = "https://predict-stock-57p5.onrender.com/";
-    Map<String, String> headers = {
-      'Content-Type': "application/json",
-    };
-    var jsonText = jsonEncode(requestData);
-    var response = await post(url, headers: headers, body: jsonText);
-    int statusCode = response.statusCode;
-    //String _body = response.body;
-    print(statusCode);
-    //print(_body); // get the body of the request and send to the app page
-    final dynamic data = json.decode(response.body);
-    print(data);
-    print(data["AAPL"]);
-    var key;
-    for (key in data.keys) {
-      print(data[key][1]);
-    }
-
-    //return _body;
-    return data;
-  }*/
 
   @override
   Widget build(BuildContext context) {
