@@ -32,13 +32,13 @@ class _SubscribeScreenState extends State<SubscribeScreen> {
   void openCheckout() async {
     var options = {
       'key': 'rzp_test_30uxz858pDwygw',
-      'amount': 700,
+      'amount': 70000,
       "method": "card",
       'name': 'Fire Trade',
       'description': 'Monthly subscription to Fire Trade',
       'prefill': {'contact': '', 'email': ''},
       //'external': {
-        //'wallets': ['paytm']
+      //'wallets': ['paytm']
       //}
     };
 
@@ -97,8 +97,7 @@ class _SubscribeScreenState extends State<SubscribeScreen> {
                 style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w300,
-                    color: Colors.grey[400]
-                ),
+                    color: Colors.grey[400]),
               ),
               SizedBox(
                 height: 50.0,
@@ -118,7 +117,8 @@ class _SubscribeScreenState extends State<SubscribeScreen> {
                   padding: EdgeInsets.all(10.0),
                   child: Column(
                     children: <Widget>[
-                      Text("LIMITED TIME OFFER",
+                      Text(
+                        "LIMITED TIME OFFER",
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
@@ -128,7 +128,8 @@ class _SubscribeScreenState extends State<SubscribeScreen> {
                       SizedBox(
                         height: 12.0,
                       ),
-                      Text("MONTHLY \$ 9.99",
+                      Text(
+                        "MONTHLY \$ 9.99",
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w300,
@@ -138,7 +139,8 @@ class _SubscribeScreenState extends State<SubscribeScreen> {
                       SizedBox(
                         height: 8.0,
                       ),
-                      Text("Recurring billing. Cancel anytime",
+                      Text(
+                        "Recurring billing. Cancel anytime",
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w200,
@@ -161,16 +163,18 @@ class _SubscribeScreenState extends State<SubscribeScreen> {
                   child: MaterialButton(
                     onPressed: () {
                       openCheckout();
-                      Navigator.pushNamed(context, StockScreen.id);
-                      },
+                      //Navigator.pushNamed(context, StockScreen.id);
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, StockScreen.id, (_) => false);
+                    },
                     //child: Text('Open'),
                     minWidth: 200.0,
                     height: 42.0,
                     child: Text(
                       'Subscribe',
                       style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
+                        color: Colors.white,
+                        fontSize: 18,
                       ),
                     ),
                   ),
@@ -183,4 +187,3 @@ class _SubscribeScreenState extends State<SubscribeScreen> {
     );
   }
 }
-

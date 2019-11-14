@@ -4,6 +4,7 @@ import 'package:fire_trade_app/screens/login_screen.dart';
 import 'package:fire_trade_app/screens/registration_screen.dart';
 import 'package:fire_trade_app/screens/subscribe_screen.dart';
 import 'package:fire_trade_app/screens/stocks_screen.dart';
+//import 'package:fire_trade_app/screens/results_screen.dart';
 
 void main() => runApp(FireTrade());
 
@@ -24,6 +25,7 @@ class FireTrade extends StatelessWidget {
         RegistrationScreen.id: (context) => RegistrationScreen(),
         SubscribeScreen.id: (context) => SubscribeScreen(),
         StockScreen.id: (context) => StockScreen(),
+        //MyResults.id: (context) => MyResults(),
       },
     );
   }

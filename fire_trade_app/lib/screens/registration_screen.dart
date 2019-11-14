@@ -12,10 +12,12 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   final _auth = FirebaseAuth.instance;
+  final _firestore = Firestore.instance;
+  FirebaseUser currentUser;
+
   String name;
   String email;
   String password;
-  FirebaseUser currentUser;
 
   @override
   initState() {
@@ -52,7 +54,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               decoration: InputDecoration(
                 hintText: 'Enter your name',
                 contentPadding:
-                EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
@@ -78,7 +80,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               decoration: InputDecoration(
                 hintText: 'Enter your email',
                 contentPadding:
-                EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
@@ -104,7 +106,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               decoration: InputDecoration(
                 hintText: 'Enter your password',
                 contentPadding:
-                EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
@@ -130,19 +132,18 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 child: MaterialButton(
                   onPressed: () async {
                     try {
-                      final newUser = await _auth.createUserWithEmailAndPassword(email: email, password: password);
-                      Firestore.instance.collection("users").document(currentUser.uid)
-                          .setData({
-                          "uid": currentUser.uid,
-                          "name": name,
-                          "email": email,
-                          });
+                      final newUser =
+                          await _auth.createUserWithEmailAndPassword(
+                              email: email, password: password);
 
                       if (newUser != null) {
+                        _firestore.collection("users").add({
+                          "name": name,
+                          "email": email,
+                        });
                         Navigator.pushNamed(context, SubscribeScreen.id);
                       }
-                    }
-                    catch (e) {
+                    } catch (e) {
                       print(e);
                     }
                   },
