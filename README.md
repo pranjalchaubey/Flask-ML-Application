@@ -1,5 +1,11 @@
-# Flask-ML-Application
-A deployable Flask based ML application
+# Flask-ML-Application - Fire Trade
+A deployable Flask + Flutter based ML application that predicts the stock returns of the next trading day using cutting edge machine learning techniques. 
+
+<br/>_Note: The flutter mobile app only works for Android at the moment._
+
+<br/>![Mobile App](/gifs/FireTrade.gif)  
+
+<br/>![Creating a new user account](/gifs/FireTrade2.gif)
 
 ### needs
 > * create a [virtual environment](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/) in python.
@@ -43,4 +49,5 @@ flask run
 * [Vinod](https://github.com/raita0100)
 * [Koushik](https://github.com/koushikkolli)
 * [Jorge Angles](https://github.com/anglesjo)
-* [Abhishek](https://github.com/yossi94)
+* [Abhishek](https://github.com/yossi94)  
+* [Boadi Samson](https://github.com/Samsonboadi)
