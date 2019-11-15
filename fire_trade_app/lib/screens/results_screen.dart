@@ -20,6 +20,7 @@ class ResultsScreen extends StatefulWidget {
 class _ResultsScreenState extends State<ResultsScreen> {
   final _auth = FirebaseAuth.instance;
   List<Prediction> predictions = [];
+
   Future<List<Prediction>> _predictions() async {
     String url = "https://predict-stock-57p5.onrender.com/";
     Map<String, String> headers = {
@@ -149,63 +150,4 @@ class _ResultsScreenState extends State<ResultsScreen> {
       ),
     );
   }
-  /*Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xFF19191E),
-      appBar: AppBar(
-        leading: null,
-        actions: <Widget>[
-          IconButton(
-              icon: Icon(Icons.close),
-              onPressed: () {
-                //Implement logout functionality
-              }),
-        ],
-        title: Text('Predictions'),
-        backgroundColor: Color(0xFF81C525),
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Container(
-            padding: EdgeInsets.only(
-                top: 80.0, left: 30.0, right: 30.0, bottom: 30.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                  child: Image.asset('assets/images/logo.png'),
-                  height: 25.0,
-                ),
-                SizedBox(
-                  height: 24.0,
-                ),
-                Text(
-                  'AI Recommendations for Tomorrow',
-                  style: TextStyle(
-                    color: Colors.grey[400],
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w300,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
-              decoration: BoxDecoration(
-                //color: Colors.white,
-                color: Color(0xFF19191E),
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20.0),
-                    topRight: Radius.circular(20.0)),
-              ),
-              child: PredictsList(predictions),
-            ),
-          ),
-        ],
-      ),
-    );
-  }*/
 }

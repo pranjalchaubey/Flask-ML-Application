@@ -61,8 +61,6 @@ class _StocksScreenState extends State<StocksScreen> {
                 ),
               ],
             ),
-
-            //child: Image.asset('assets/images/logo.png'),
           ),
           Expanded(
             child: Container(
@@ -85,10 +83,6 @@ class _StocksScreenState extends State<StocksScreen> {
               elevation: 5.0,
               child: MaterialButton(
                 onPressed: () {
-                  //print(stocks[0].name);
-                  /*var mappedNames =
-                      stocks.map((n) => '${n.name} ${n.isSelected}');
-                  mappedNames.forEach((n) => print(n));*/
                   for (var i = 0; i < stocks.length; i++) {
                     if (stocks[i].isSelected) {
                       _jsonRequest["$i"] = "${stocks[i].name}";
@@ -96,8 +90,7 @@ class _StocksScreenState extends State<StocksScreen> {
                       _jsonRequest.remove("$i");
                     }
                   }
-                  print(_jsonRequest);
-                  //makePostRequest(_jsonRequest);
+                  //print(_jsonRequest);
 
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return ResultsScreen(
